@@ -55,7 +55,7 @@ export default function Contact() {
     'w-full px-4 py-3 border border-gray-200 rounded-lg font-opensans text-sm text-ctrs-dark placeholder-ctrs-dark/30 focus:outline-none focus:border-ctrs-green focus:ring-2 focus:ring-ctrs-green/10 transition-all bg-white'
 
   return (
-    <section id="contact" ref={ref} className="bg-white py-24 sm:py-32">
+    <section id="contact" ref={ref} className="bg-white py-24 sm:py-32 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}

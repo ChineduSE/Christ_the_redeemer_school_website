@@ -67,7 +67,7 @@ export default function Gallery() {
         </motion.div>
 
         {/* Masonry grid */}
-        <div className="columns-2 md:columns-3 lg:columns-4 gap-4">
+        <div className="columns-2 sm:columns-2 md:columns-3 lg:columns-4 gap-3 sm:gap-4">
           {images.map((img, i) => (
             <motion.div
               key={i}
@@ -103,20 +103,20 @@ export default function Gallery() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className="fixed inset-0 z-[200] bg-black/95 flex items-center justify-center p-4"
+            className="fixed inset-0 z-[200] bg-black/95 flex items-center justify-center p-2 sm:p-4"
             onClick={() => setLightbox(null)}
           >
             {/* Close */}
             <button
-              className="absolute top-5 right-5 text-white/70 hover:text-white bg-white/10 hover:bg-white/20 rounded-full p-2 transition-all z-10"
+              className="absolute top-4 right-4 text-white/70 hover:text-white bg-white/10 hover:bg-white/20 rounded-full p-2.5 transition-all z-10 min-w-[44px] min-h-[44px] flex items-center justify-center"
               onClick={() => setLightbox(null)}
             >
-              <X size={22} />
+              <X size={20} />
             </button>
 
             {/* Prev */}
             <button
-              className="absolute left-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white bg-white/10 hover:bg-white/20 rounded-full p-3 transition-all z-10"
+              className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white bg-white/10 hover:bg-white/20 rounded-full p-3 transition-all z-10 min-w-[44px] min-h-[44px] flex items-center justify-center"
               onClick={(e) => { e.stopPropagation(); prev() }}
             >
               <ChevronLeft size={22} />
@@ -124,7 +124,7 @@ export default function Gallery() {
 
             {/* Next */}
             <button
-              className="absolute right-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white bg-white/10 hover:bg-white/20 rounded-full p-3 transition-all z-10"
+              className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white bg-white/10 hover:bg-white/20 rounded-full p-3 transition-all z-10 min-w-[44px] min-h-[44px] flex items-center justify-center"
               onClick={(e) => { e.stopPropagation(); next() }}
             >
               <ChevronRight size={22} />

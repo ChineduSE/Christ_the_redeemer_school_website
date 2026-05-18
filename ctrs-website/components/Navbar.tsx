@@ -84,7 +84,7 @@ export default function Navbar() {
                   : 'border-white/70 text-white hover:bg-white hover:text-ctrs-green'
               }`}
             >
-              Parent Portal
+              School Parent
             </a>
             <a
               href="#admissions"
@@ -133,7 +133,7 @@ export default function Navbar() {
                   href="#"
                   className="font-raleway font-semibold text-sm text-center py-2.5 border-2 border-ctrs-green text-ctrs-green rounded-lg hover:bg-ctrs-green hover:text-white transition-all"
                 >
-                  Parent Portal
+                  School Parent
                 </a>
                 <a
                   href="#admissions"

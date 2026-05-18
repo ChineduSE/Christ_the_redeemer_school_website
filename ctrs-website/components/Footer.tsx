@@ -5,7 +5,7 @@ const links: Record<string, string[]> = {
   School: ['About Us', 'Vision & Mission', "Director's Message", 'CRSM Overview'],
   Academics: ['Crèche & Pre-School', 'Nursery & Kindergarten', 'Primary School', 'Secondary School'],
   Facilities: ['Library', 'Science Laboratory', 'Computer Lab', 'Playground', 'Transport'],
-  Connect: ['Admissions', 'Gallery', 'News & Events', 'Contact Us', 'Parent Portal'],
+  Connect: ['Admissions', 'Gallery', 'News & Events', 'Contact Us', 'School Parent'],
 }
 
 const social = [
@@ -60,7 +60,7 @@ export default function Footer() {
                   key={label}
                   href="#"
                   aria-label={label}
-                  className="w-8 h-8 rounded-full bg-white/8 border border-white/10 flex items-center justify-center hover:bg-ctrs-amber hover:border-ctrs-amber hover:scale-110 transition-all duration-300"
+                  className="w-9 h-9 rounded-full bg-white/10 border border-white/10 flex items-center justify-center hover:bg-ctrs-amber hover:border-ctrs-amber hover:scale-110 transition-all duration-300"
                 >
                   <Icon size={13} />
                 </a>

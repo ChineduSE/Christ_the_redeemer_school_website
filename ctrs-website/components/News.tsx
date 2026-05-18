@@ -119,7 +119,7 @@ export default function News() {
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.3 }}
           >
-            <div className="bg-white rounded-2xl shadow-md p-6 sticky top-24">
+            <div className="bg-white rounded-2xl shadow-md p-6 lg:sticky lg:top-24">
               <div className="flex items-center gap-3 mb-7">
                 <div className="w-1 h-6 bg-ctrs-amber rounded-full" />
                 <h3 className="font-playfair text-xl font-bold text-ctrs-dark">Upcoming Events</h3>

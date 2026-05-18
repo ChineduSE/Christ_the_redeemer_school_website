@@ -41,34 +41,34 @@ export default function About() {
             initial={{ opacity: 0, x: -40 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.9, delay: 0.2 }}
-            className="relative"
+            className="relative px-3 pb-3 sm:px-0 sm:pb-0"
           >
-            {/* Offset shadow card */}
-            <div className="absolute -top-5 -left-5 w-full h-full bg-ctrs-green/15 rounded-2xl" />
-            <div className="absolute -bottom-5 -right-5 w-28 h-28 bg-ctrs-amber/25 rounded-xl" />
+            {/* Offset shadow card — hidden on mobile to prevent overflow */}
+            <div className="hidden sm:block absolute -top-5 -left-5 w-full h-full bg-ctrs-green/15 rounded-2xl" />
+            <div className="hidden sm:block absolute -bottom-5 -right-5 w-28 h-28 bg-ctrs-amber/25 rounded-xl" />
 
-            {/* Director photo / placeholder */}
+            {/* Director photo */}
             <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/5] z-10">
-              <div className="w-full h-full bg-gradient-to-br from-ctrs-green via-ctrs-emerald to-ctrs-teal flex flex-col items-center justify-center text-white">
-                <div className="w-28 h-28 rounded-full border-4 border-white/20 bg-white/10 flex items-center justify-center mb-5">
-                  <svg className="w-14 h-14 text-white/50" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z" />
-                  </svg>
-                </div>
-                <p className="font-playfair text-2xl font-bold mb-1">The Director</p>
-                <p className="font-raleway text-sm text-white/60 tracking-wide">Christ The Redeemer&apos;s Schools</p>
-
-                {/* Decorative motto stripe */}
-                <div className="absolute bottom-0 inset-x-0 bg-ctrs-amber/90 py-3 px-5 text-center">
-                  <p className="font-playfair italic text-sm text-white">
-                    &ldquo;Education For God&apos;s Glory&rdquo;
-                  </p>
-                </div>
+              <Image
+                src="/images/director/director-portrait-formal.jpeg"
+                alt="Pastor Osagie Ize-Iyamu and Doctor Idia Ize-Iyamu — Directors, CTRS"
+                fill
+                className="object-cover object-top"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+              {/* Bottom gradient + name plate */}
+              <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent pt-16 pb-5 px-5 text-center">
+                <p className="font-playfair font-bold text-white text-base leading-snug">
+                  Pst. Osagie &amp; Dr. Idia Ize-Iyamu
+                </p>
+                <p className="font-raleway text-[11px] text-ctrs-amber tracking-wider uppercase mt-1">
+                  Directors, Christ The Redeemer&apos;s Schools
+                </p>
               </div>
             </div>
 
-            {/* Crest badge */}
-            <div className="absolute top-6 right-6 z-20 bg-white rounded-xl p-3 shadow-xl flex items-center gap-2.5">
+            {/* Crest badge — hidden on small mobile screens */}
+            <div className="hidden xs:flex absolute top-6 right-6 z-20 bg-white rounded-xl p-3 shadow-xl items-center gap-2.5">
               <div className="relative w-10 h-10">
                 <Image src="/images/logo_ctrs.png" alt="CTRS Crest" fill className="object-contain" />
               </div>
@@ -85,7 +85,7 @@ export default function About() {
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.9, delay: 0.35 }}
           >
-            <span className="section-label">A Message From the Director</span>
+            <span className="section-label">A Message From Our Directors</span>
             <div className="amber-line mt-3 mb-6" />
 
             <h3 className="font-playfair text-3xl sm:text-4xl font-bold text-ctrs-dark leading-snug mb-7">
@@ -104,7 +104,7 @@ export default function About() {
                 prepared for the world ahead.
               </p>
               <p className="font-raleway font-semibold text-ctrs-green text-sm mt-3">
-                — The Director, Christ The Redeemer&apos;s Schools
+                — Pst. Osagie &amp; Dr. Idia Ize-Iyamu, Directors, CTRS
               </p>
             </div>
 
