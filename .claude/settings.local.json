@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Skill(frontend-design:frontend-design)",
+      "Bash(New-Item -ItemType Directory -Force \"C:\\\\Users\\\\Chinedu Nweke\\\\Downloads\\\\CtrsWebsiteProject\\\\ctrs-website\\\\app\")",
+      "Bash(Out-Null)",
+      "Bash(New-Item -ItemType Directory -Force \"C:\\\\Users\\\\Chinedu Nweke\\\\Downloads\\\\CtrsWebsiteProject\\\\ctrs-website\\\\components\")",
+      "Bash(New-Item -ItemType Directory -Force \"C:\\\\Users\\\\Chinedu Nweke\\\\Downloads\\\\CtrsWebsiteProject\\\\ctrs-website\\\\public\\\\images\")",
+      "Bash(Write-Host \"Directories created\")"
+    ]
+  }
+}
