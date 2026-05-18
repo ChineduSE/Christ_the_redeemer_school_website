@@ -5,7 +5,7 @@ const links: Record<string, string[]> = {
   School: ['About Us', 'Vision & Mission', "Director's Message", 'CRSM Overview'],
   Academics: ['Crèche & Pre-School', 'Nursery & Kindergarten', 'Primary School', 'Secondary School'],
   Facilities: ['Library', 'Science Laboratory', 'Computer Lab', 'Playground', 'Transport'],
-  Connect: ['Admissions', 'Gallery', 'News & Events', 'Contact Us', 'School Parent'],
+  Connect: ['Admissions', 'Gallery', 'News & Events', 'Contact Us', 'School Portal'],
 }
 
 const social = [

@@ -5,45 +5,36 @@ import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
 
+// imgCls uses Tailwind's responsive prefix to set object-position at the CSS level —
+// no JS media-query detection needed, so it works correctly on SSR/Vercel.
+// Mobile (default): object-top shows the top portion of landscape images (faces/subjects).
+// sm+ (≥640px): uses the original desktop-optimised position per slide.
 const slides = [
   {
     src: '/images/students/secondary/secondary-students-raising-hands-happy.jpeg',
-    pos: 'center center',
-    mobilePos: 'center top',
+    imgCls: 'object-cover object-top sm:object-center',
   },
   {
     src: '/images/students/secondary/secondary-students-raising-hands-group.jpeg',
-    pos: 'center center',
-    mobilePos: 'center top',
+    imgCls: 'object-cover object-top sm:object-center',
   },
   {
     src: '/images/students/secondary/secondary-large-group-photo-blazers.jpeg',
-    pos: 'center 30%',
-    mobilePos: 'center top',
+    imgCls: 'object-cover object-top sm:[object-position:center_30%]',
   },
   {
     src: '/images/library/library-secondary-students-smiling-reading.jpeg',
-    pos: 'center center',
-    mobilePos: 'center 25%',
+    imgCls: 'object-cover [object-position:center_25%] sm:object-center',
   },
   {
     src: '/images/campus/campus-exterior-building-full-frontage.jpeg',
-    pos: 'center center',
-    mobilePos: 'center center',
+    imgCls: 'object-cover object-center',
   },
 ]
 
 export default function Hero() {
   const [current, setCurrent] = useState(0)
   const [paused, setPaused] = useState(false)
-  const [isMobile, setIsMobile] = useState(false)
-
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 640)
-    check()
-    window.addEventListener('resize', check, { passive: true })
-    return () => window.removeEventListener('resize', check)
-  }, [])
 
   const next = useCallback(() => {
     setCurrent((p) => (p + 1) % slides.length)
@@ -54,9 +45,6 @@ export default function Hero() {
     const id = setInterval(next, 5000)
     return () => clearInterval(id)
   }, [next, paused])
-
-  const activeSlide = slides[current]
-  const objectPosition = isMobile ? activeSlide.mobilePos : activeSlide.pos
 
   return (
     <section id="home" className="relative w-full h-screen min-h-[580px] overflow-hidden bg-black">
@@ -72,13 +60,12 @@ export default function Hero() {
           className="absolute inset-0"
         >
           <Image
-            src={activeSlide.src}
+            src={slides[current].src}
             alt="Christ The Redeemer's Schools"
             fill
             priority
             sizes="100vw"
-            className="object-cover"
-            style={{ objectPosition }}
+            className={slides[current].imgCls}
           />
         </motion.div>
       </AnimatePresence>
@@ -149,16 +136,15 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Slide indicators — larger tap targets on mobile */}
+      {/* Slide indicators — original small size */}
       <div className="absolute bottom-14 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2">
         {slides.map((_, i) => (
           <button
             key={i}
             onClick={() => { setCurrent(i); setPaused(true) }}
-            className={`h-1.5 rounded-full transition-all duration-500 ${
-              i === current ? 'w-8 bg-ctrs-amber' : 'w-3 bg-white/40 hover:bg-white/70'
+            className={`h-1 rounded-full transition-all duration-500 ${
+              i === current ? 'w-8 bg-ctrs-amber' : 'w-2.5 bg-white/40 hover:bg-white/70'
             }`}
-            style={{ minWidth: '12px', minHeight: '24px', padding: '8px 4px', boxSizing: 'content-box' }}
             aria-label={`Slide ${i + 1}`}
           />
         ))}
