@@ -12,19 +12,19 @@ import { ChevronDown } from 'lucide-react'
 const slides = [
   {
     src: '/images/students/secondary/secondary-students-raising-hands-happy.jpeg',
-    imgCls: 'object-cover object-top sm:object-center',
+    imgCls: 'object-cover object-[center_15%] sm:object-center',
   },
   {
     src: '/images/students/secondary/secondary-students-raising-hands-group.jpeg',
-    imgCls: 'object-cover object-top sm:object-center',
+    imgCls: 'object-cover object-[center_15%] sm:object-center',
   },
   {
     src: '/images/students/secondary/secondary-large-group-photo-blazers.jpeg',
-    imgCls: 'object-cover object-top sm:[object-position:center_30%]',
+    imgCls: 'object-cover object-[center_20%] sm:[object-position:center_30%]',
   },
   {
     src: '/images/library/library-secondary-students-smiling-reading.jpeg',
-    imgCls: 'object-cover [object-position:center_25%] sm:object-center',
+    imgCls: 'object-cover object-[center_10%] sm:object-center',
   },
   {
     src: '/images/campus/campus-exterior-building-full-frontage.jpeg',
@@ -47,14 +47,14 @@ export default function Hero() {
   }, [next, paused])
 
   return (
-    <section id="home" className="relative w-full h-screen min-h-[580px] overflow-hidden bg-black">
+    <section id="home" className="relative w-full h-[100svh] min-h-[580px] overflow-hidden bg-black">
 
       {/* Slides */}
       <AnimatePresence>
         <motion.div
           key={current}
-          initial={{ opacity: 0, scale: 1.03 }}
-          animate={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 1.2, ease: [0.25, 0.1, 0.25, 1] }}
           className="absolute inset-0"
