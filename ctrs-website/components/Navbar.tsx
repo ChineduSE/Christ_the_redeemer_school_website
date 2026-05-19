@@ -20,7 +20,7 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
-    <nav className="sticky top-0 left-0 right-0 z-50 bg-ctrs-green border-b border-ctrs-amber/30 shadow-md">
+    <nav className="sticky top-0 left-0 right-0 z-50 bg-white border-b border-ctrs-green/15 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-[70px] gap-6">
 
@@ -35,10 +35,10 @@ export default function Navbar() {
               />
             </div>
             <div className="hidden sm:block">
-              <p className="font-raleway font-bold text-[11px] leading-tight tracking-widest uppercase text-white">
+              <p className="font-raleway font-bold text-[11px] leading-tight tracking-widest uppercase text-ctrs-green">
                 Christ The Redeemer&apos;s
               </p>
-              <p className="font-raleway font-light text-[10px] tracking-[0.3em] uppercase text-white/60">
+              <p className="font-raleway font-light text-[10px] tracking-[0.3em] uppercase text-ctrs-green/55">
                 Schools
               </p>
             </div>
@@ -50,7 +50,7 @@ export default function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                className="font-raleway font-medium text-[13px] px-3 py-2 rounded-md text-white/80 hover:text-white hover:bg-white/10 transition-all duration-200"
+                className="font-raleway font-medium text-[13px] px-3 py-2 rounded-md text-ctrs-green/75 hover:text-ctrs-green hover:bg-ctrs-green/8 transition-all duration-200"
               >
                 {link.label}
               </a>
@@ -61,7 +61,7 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center gap-3 flex-shrink-0">
             <a
               href="#"
-              className="font-raleway font-semibold text-[13px] px-4 py-2 rounded-md border-2 border-white/40 text-white hover:bg-white hover:text-ctrs-green transition-all duration-300"
+              className="font-raleway font-semibold text-[13px] px-4 py-2 rounded-md border-2 border-ctrs-green/40 text-ctrs-green hover:bg-ctrs-green hover:text-white transition-all duration-300"
             >
               School Portal
             </a>
@@ -76,7 +76,7 @@ export default function Navbar() {
           {/* Mobile toggle */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="lg:hidden p-2 rounded-md text-white hover:bg-white/10 transition-colors"
+            className="lg:hidden p-2 rounded-md text-ctrs-green hover:bg-ctrs-green/10 transition-colors"
             aria-label="Toggle menu"
           >
             {menuOpen ? <X size={22} /> : <Menu size={22} />}

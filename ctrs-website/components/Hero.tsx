@@ -6,14 +6,14 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 const slides = [
   {
-    src: '/images/students/secondary/secondary-students-raising-hands-happy.jpeg',
-    imgCls: 'object-cover object-center',
-    alt: 'Secondary students enthusiastically raising hands in class',
+    src: '/images/library/library-secondary-student-portrait-holding-book.jpeg',
+    imgCls: 'object-cover object-[center_20%]',
+    alt: 'Secondary student in CTRS uniform holding a book in the library',
   },
   {
-    src: '/images/students/secondary/secondary-students-raising-hands-group.jpeg',
+    src: '/images/students/secondary/secondary-student-reading-ctrs-uniform-portrait.jpeg',
     imgCls: 'object-cover object-center',
-    alt: 'Group of secondary students raising hands',
+    alt: 'Secondary student reading in CTRS uniform',
   },
   {
     src: '/images/students/secondary/secondary-large-group-photo-blazers.jpeg',
