@@ -70,8 +70,24 @@ export default function Hero() {
         </motion.div>
       </AnimatePresence>
 
-      {/* Subtle bottom gradient so dots stay readable */}
-      <div className="absolute bottom-0 inset-x-0 h-16 bg-gradient-to-t from-black/50 to-transparent z-10" />
+      {/* Bottom gradient — covers CTA + dots area */}
+      <div className="absolute bottom-0 inset-x-0 h-28 bg-gradient-to-t from-black/65 to-transparent z-10" />
+
+      {/* CTAs — float above the slide dots */}
+      <div className="absolute bottom-11 left-1/2 -translate-x-1/2 z-20 flex items-center gap-3 whitespace-nowrap">
+        <a
+          href="#admissions"
+          className="font-raleway font-bold text-sm px-6 py-2.5 bg-ctrs-amber text-white rounded-lg hover:bg-ctrs-amber/90 transition-all duration-300 shadow-lg"
+        >
+          Apply Now
+        </a>
+        <a
+          href="#about"
+          className="font-raleway font-semibold text-sm px-6 py-2.5 border-2 border-white/70 text-white rounded-lg hover:bg-white hover:text-ctrs-green transition-all duration-300"
+        >
+          Explore School
+        </a>
+      </div>
 
       {/* Slide indicators */}
       <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2">
