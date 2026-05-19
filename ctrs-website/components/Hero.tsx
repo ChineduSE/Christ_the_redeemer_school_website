@@ -74,7 +74,7 @@ export default function Hero() {
       <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/45 to-black/10 z-10" />
 
       {/* Extra bottom gradient on mobile so text at bottom stays readable */}
-      <div className="absolute bottom-0 inset-x-0 h-44 bg-gradient-to-t from-black/65 to-transparent z-10 sm:hidden" />
+      <div className="absolute bottom-0 inset-x-0 h-56 bg-gradient-to-t from-black/70 to-transparent z-10 sm:hidden" />
 
       {/* Text + CTA overlay */}
       <div className="absolute bottom-14 left-0 right-0 sm:inset-0 z-20 px-5 sm:px-10 lg:px-16 sm:flex sm:flex-col sm:justify-center">
@@ -94,8 +94,8 @@ export default function Hero() {
             <span className="italic text-ctrs-amber">God&apos;s Glory</span>
           </h1>
 
-          {/* Subtext — desktop only */}
-          <p className="hidden sm:block font-opensans text-sm lg:text-[15px] text-white/80 leading-relaxed mb-6 lg:mb-8">
+          {/* Subtext */}
+          <p className="font-opensans text-[11.5px] sm:text-sm lg:text-[15px] text-white/80 leading-relaxed mb-4 sm:mb-6 lg:mb-8">
             Raising spiritually grounded, academically excellent, and socially
             competent young people — from Crèche to Secondary School in Benin
             City, Edo State.
