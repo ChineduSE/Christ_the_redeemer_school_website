@@ -64,27 +64,6 @@ export default function HeroContent() {
           — from Crèche to Secondary School in Benin City, Edo State.
         </motion.p>
 
-        {/* CTAs */}
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.65 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto"
-        >
-          <a
-            href="#admissions"
-            className="w-full sm:w-auto font-raleway font-bold text-base px-10 py-4 bg-ctrs-green text-white rounded-lg hover:bg-ctrs-green/90 transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 text-center"
-          >
-            Apply Now
-          </a>
-          <a
-            href="#about"
-            className="w-full sm:w-auto font-raleway font-semibold text-base px-10 py-4 border-2 border-ctrs-green text-ctrs-green rounded-lg hover:bg-ctrs-green hover:text-white transition-all duration-300 text-center"
-          >
-            Explore School
-          </a>
-        </motion.div>
-
         {/* Small trust strip */}
         <motion.div
           initial={{ opacity: 0 }}

@@ -11,9 +11,9 @@ const slides = [
     alt: 'Secondary student in CTRS uniform holding a book in the library',
   },
   {
-    src: '/images/students/secondary/secondary-student-reading-ctrs-uniform-portrait.jpeg',
+    src: '/images/students/creche/creche-toddlers-playing-colorful-blocks-table.jpeg',
     imgCls: 'object-cover object-center',
-    alt: 'Secondary student reading in CTRS uniform',
+    alt: 'Crèche toddlers playing with colourful blocks at the table',
   },
   {
     src: '/images/students/secondary/secondary-large-group-photo-blazers.jpeg',
@@ -47,7 +47,7 @@ export default function Hero() {
   }, [next, paused])
 
   return (
-    <section id="home" className="relative w-full h-[280px] sm:h-[420px] md:h-[520px] lg:h-[620px] overflow-hidden bg-black">
+    <section id="home" className="relative w-full h-[360px] sm:h-[460px] md:h-[540px] lg:h-[640px] overflow-hidden bg-black">
 
       {/* Slides */}
       <AnimatePresence>
@@ -70,23 +70,53 @@ export default function Hero() {
         </motion.div>
       </AnimatePresence>
 
-      {/* Bottom gradient — covers CTA + dots area */}
-      <div className="absolute bottom-0 inset-x-0 h-28 bg-gradient-to-t from-black/65 to-transparent z-10" />
+      {/* Left-to-right dark gradient — gives text a clean backdrop */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/45 to-black/10 z-10" />
 
-      {/* CTAs — float above the slide dots */}
-      <div className="absolute bottom-11 left-1/2 -translate-x-1/2 z-20 flex items-center gap-3 whitespace-nowrap">
-        <a
-          href="#admissions"
-          className="font-raleway font-bold text-sm px-6 py-2.5 bg-ctrs-amber text-white rounded-lg hover:bg-ctrs-amber/90 transition-all duration-300 shadow-lg"
-        >
-          Apply Now
-        </a>
-        <a
-          href="#about"
-          className="font-raleway font-semibold text-sm px-6 py-2.5 border-2 border-white/70 text-white rounded-lg hover:bg-white hover:text-ctrs-green transition-all duration-300"
-        >
-          Explore School
-        </a>
+      {/* Extra bottom gradient on mobile so text at bottom stays readable */}
+      <div className="absolute bottom-0 inset-x-0 h-44 bg-gradient-to-t from-black/65 to-transparent z-10 sm:hidden" />
+
+      {/* Text + CTA overlay */}
+      <div className="absolute bottom-14 left-0 right-0 sm:inset-0 z-20 px-5 sm:px-10 lg:px-16 sm:flex sm:flex-col sm:justify-center">
+        <div className="max-w-[85%] xs:max-w-[300px] sm:max-w-sm lg:max-w-xl">
+
+          {/* Eyebrow — desktop only */}
+          <p className="hidden sm:block font-raleway text-[10px] tracking-[0.45em] uppercase font-semibold text-ctrs-amber mb-3">
+            Christ The Redeemer&apos;s Schools
+          </p>
+
+          {/* Amber divider — desktop only */}
+          <div className="hidden sm:block w-10 h-0.5 bg-ctrs-amber mb-4" />
+
+          {/* Headline */}
+          <h1 className="font-playfair text-[1.6rem] sm:text-4xl lg:text-5xl font-bold text-white leading-tight mb-3 sm:mb-4">
+            Education For{' '}
+            <span className="italic text-ctrs-amber">God&apos;s Glory</span>
+          </h1>
+
+          {/* Subtext — desktop only */}
+          <p className="hidden sm:block font-opensans text-sm lg:text-[15px] text-white/80 leading-relaxed mb-6 lg:mb-8">
+            Raising spiritually grounded, academically excellent, and socially
+            competent young people — from Crèche to Secondary School in Benin
+            City, Edo State.
+          </p>
+
+          {/* CTAs */}
+          <div className="flex flex-wrap gap-2.5 sm:gap-3">
+            <a
+              href="#admissions"
+              className="font-raleway font-bold text-xs sm:text-sm px-5 sm:px-6 py-2 sm:py-2.5 bg-ctrs-amber text-white rounded-lg hover:bg-ctrs-amber/90 transition-all duration-300 shadow-lg"
+            >
+              Apply Now
+            </a>
+            <a
+              href="#about"
+              className="font-raleway font-semibold text-xs sm:text-sm px-5 sm:px-6 py-2 sm:py-2.5 border-2 border-white/70 text-white rounded-lg hover:bg-white hover:text-ctrs-green transition-all duration-300"
+            >
+              Explore School
+            </a>
+          </div>
+        </div>
       </div>
 
       {/* Slide indicators */}

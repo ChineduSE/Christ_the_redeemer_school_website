@@ -1,6 +1,6 @@
 import Navbar from '@/components/Navbar'
 import Hero from '@/components/Hero'
-import HeroContent from '@/components/HeroContent'
+import Announcements from '@/components/Announcements'
 import Stats from '@/components/Stats'
 import About from '@/components/About'
 import Academics from '@/components/Academics'
@@ -16,7 +16,7 @@ export default function HomePage() {
     <main>
       <Navbar />
       <Hero />
-      <HeroContent />
+      <Announcements />
       <Stats />
       <About />
       <Academics />
