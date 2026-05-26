@@ -23,42 +23,41 @@ export default function HeroContent() {
 
       <div className="relative max-w-4xl mx-auto px-5 sm:px-8 py-14 sm:py-20 text-center">
 
-        {/* Eyebrow */}
-        <motion.div
-          initial={{ opacity: 0, y: -12 }}
+        {/* School name — main headline */}
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.1 }}
+          transition={{ duration: 0.8, delay: 0.1 }}
+          className="font-playfair text-4xl sm:text-5xl lg:text-6xl font-bold text-ctrs-green leading-[1.1] mb-4"
         >
-          <span className="font-raleway text-[11px] tracking-[0.45em] uppercase font-semibold text-ctrs-amber">
-            Christ The Redeemer&apos;s Schools
-          </span>
-        </motion.div>
+          Christ The Redeemer&apos;s Schools
+        </motion.h1>
 
         {/* Amber divider */}
         <motion.div
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="amber-line mx-auto mt-3 mb-6"
+          className="amber-line mx-auto mt-1 mb-4"
         />
 
-        {/* Motto */}
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
+        {/* Tagline — smaller */}
+        <motion.div
+          initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.35 }}
-          className="font-playfair text-4xl sm:text-5xl lg:text-6xl font-bold text-ctrs-green leading-[1.1] mb-5"
+          transition={{ duration: 0.7, delay: 0.35 }}
         >
-          Education For{' '}
-          <span className="italic text-ctrs-amber">God&apos;s Glory</span>
-        </motion.h1>
+          <span className="font-raleway text-sm sm:text-base tracking-[0.2em] uppercase font-semibold text-ctrs-amber">
+            Education For God&apos;s Glory
+          </span>
+        </motion.div>
 
         {/* Subtext */}
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          className="font-opensans text-base sm:text-lg text-ctrs-dark/65 max-w-2xl mx-auto leading-relaxed mb-10"
+          transition={{ duration: 0.8, delay: 0.55 }}
+          className="font-opensans text-base sm:text-lg text-ctrs-dark/65 max-w-2xl mx-auto leading-relaxed mt-6 mb-10"
         >
           Raising spiritually grounded, academically excellent, and socially competent young people
           — from Crèche to Secondary School in Benin City, Edo State.

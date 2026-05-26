@@ -1,0 +1,4 @@
+ctrs-website/node_modules/
+ctrs-website/.next/
+ctrs-website/.env
+ctrs-website/.env.local

@@ -32,9 +32,13 @@ const slides = [
   },
 ]
 
+const SUBTEXT = 'Raising spiritually grounded, academically excellent, and socially competent young people — from Crèche to Secondary School in Benin City, Edo State.'
+
 export default function Hero() {
   const [current, setCurrent] = useState(0)
   const [paused, setPaused] = useState(false)
+  const [typed, setTyped] = useState('')
+  const [typingDone, setTypingDone] = useState(false)
 
   const next = useCallback(() => {
     setCurrent((p) => (p + 1) % slides.length)
@@ -45,6 +49,24 @@ export default function Hero() {
     const id = setInterval(next, 5000)
     return () => clearInterval(id)
   }, [next, paused])
+
+  useEffect(() => {
+    setTyped('')
+    setTypingDone(false)
+    let i = 0
+    const start = setTimeout(() => {
+      const id = setInterval(() => {
+        i++
+        setTyped(SUBTEXT.slice(0, i))
+        if (i >= SUBTEXT.length) {
+          clearInterval(id)
+          setTypingDone(true)
+        }
+      }, 36)
+      return () => clearInterval(id)
+    }, 900)
+    return () => clearTimeout(start)
+  }, [])
 
   return (
     <section id="home" className="relative w-full h-[360px] sm:h-[460px] md:h-[540px] lg:h-[640px] overflow-hidden bg-black">
@@ -80,25 +102,26 @@ export default function Hero() {
       <div className="absolute bottom-14 left-0 right-0 sm:inset-0 z-20 px-5 sm:px-10 lg:px-16 sm:flex sm:flex-col sm:justify-center">
         <div className="max-w-[85%] xs:max-w-[300px] sm:max-w-sm lg:max-w-xl">
 
-          {/* Eyebrow — desktop only */}
-          <p className="hidden sm:block font-raleway text-[10px] tracking-[0.45em] uppercase font-semibold text-ctrs-amber mb-3">
+          {/* Headline — school name */}
+          <h1 className="font-playfair text-[1.6rem] sm:text-4xl lg:text-5xl font-bold text-white leading-tight mb-2 sm:mb-3">
             Christ The Redeemer&apos;s Schools
-          </p>
-
-          {/* Amber divider — desktop only */}
-          <div className="hidden sm:block w-10 h-0.5 bg-ctrs-amber mb-4" />
-
-          {/* Headline */}
-          <h1 className="font-playfair text-[1.6rem] sm:text-4xl lg:text-5xl font-bold text-white leading-tight mb-3 sm:mb-4">
-            Education For{' '}
-            <span className="italic text-ctrs-amber">God&apos;s Glory</span>
           </h1>
 
-          {/* Subtext */}
-          <p className="font-opensans text-[11.5px] sm:text-sm lg:text-[15px] text-white/80 leading-relaxed mb-4 sm:mb-6 lg:mb-8">
-            Raising spiritually grounded, academically excellent, and socially
-            competent young people — from Crèche to Secondary School in Benin
-            City, Edo State.
+          {/* Tagline — smaller, amber */}
+          <p className="font-raleway text-[11px] sm:text-sm lg:text-base tracking-[0.08em] uppercase font-semibold text-ctrs-amber mb-3 sm:mb-4">
+            Education For God&apos;s Glory
+          </p>
+
+          {/* Subtext — typewriter */}
+          <p className="font-opensans text-[11.5px] sm:text-sm lg:text-[15px] text-white/80 leading-relaxed mb-4 sm:mb-6 lg:mb-8 min-h-[3em]">
+            {typed}
+            {!typingDone && (
+              <motion.span
+                animate={{ opacity: [1, 0, 1] }}
+                transition={{ duration: 0.75, repeat: Infinity, ease: 'linear' }}
+                className="inline-block w-[1.5px] h-[1em] bg-white/70 align-middle ml-[1px] translate-y-[-1px]"
+              />
+            )}
           </p>
 
           {/* CTAs */}
