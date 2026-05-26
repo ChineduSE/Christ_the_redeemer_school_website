@@ -113,7 +113,7 @@ export default function Hero() {
           </p>
 
           {/* Subtext — typewriter */}
-          <p className="font-opensans text-[11.5px] sm:text-sm lg:text-[15px] text-white/80 leading-relaxed mb-4 sm:mb-6 lg:mb-8 min-h-[3em]">
+          <p className="font-opensans text-[11.5px] sm:text-sm lg:text-[15px] text-white/80 leading-relaxed mb-4 sm:mb-6 lg:mb-8 min-h-[8em] sm:min-h-[4em]">
             {typed}
             {!typingDone && (
               <motion.span

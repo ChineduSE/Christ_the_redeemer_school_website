@@ -95,8 +95,8 @@ export default function Admissions() {
             </h3>
 
             <div className="space-y-8 relative">
-              {/* Connector line */}
-              <div className="absolute left-[27px] top-14 bottom-14 w-px bg-white/10" />
+              {/* Connector line — centred on the 56px (w-14) circle */}
+              <div className="absolute left-[27px] top-16 bottom-16 w-px bg-white/10" />
 
               {steps.map((step, i) => {
                 const Icon = step.Icon

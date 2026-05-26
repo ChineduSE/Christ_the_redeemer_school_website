@@ -113,7 +113,7 @@ export default function Academics() {
                 </h3>
 
                 {/* Description - visible on hover */}
-                <p className="font-opensans text-sm text-white/70 leading-relaxed mb-4 max-h-0 overflow-hidden group-hover:max-h-24 transition-all duration-500">
+                <p className="font-opensans text-sm text-white/70 leading-relaxed mb-4 max-h-24 sm:max-h-0 sm:overflow-hidden sm:group-hover:max-h-24 transition-all duration-500">
                   {div.body}
                 </p>
 
