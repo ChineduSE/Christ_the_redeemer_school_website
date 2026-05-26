@@ -72,7 +72,7 @@ export default function HeroContent() {
         >
           {[
             'Crèche to Secondary',
-            '25+ Years of Excellence',
+            '2+ Years of Excellence',
             'Benin City, Edo State',
           ].map((item, i) => (
             <span key={i} className="flex items-center gap-2 font-raleway text-xs text-ctrs-dark/45 uppercase tracking-wider">

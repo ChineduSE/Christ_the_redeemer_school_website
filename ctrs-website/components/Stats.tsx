@@ -5,9 +5,9 @@ import { motion, useInView } from 'framer-motion'
 
 const stats = [
   { value: 5, suffix: '', label: 'School Divisions', sub: 'Crèche to Secondary' },
-  { value: 25, suffix: '+', label: 'Years of Excellence', sub: 'Proven tradition' },
-  { value: 50, suffix: '+', label: 'Qualified Teachers', sub: 'Dedicated educators' },
-  { value: 1000, suffix: '+', label: 'Students Enrolled', sub: 'Growing community' },
+  { value: 2, suffix: '+', label: 'Years of Excellence', sub: 'Proven tradition' },
+  { value: 20, suffix: '+', label: 'Qualified Teachers', sub: 'Dedicated educators' },
+  { value: 300, suffix: '+', label: 'Students Enrolled', sub: 'Growing community' },
   { value: 6, suffix: '', label: 'Specialised Facilities', sub: 'Modern learning spaces' },
 ]
 
