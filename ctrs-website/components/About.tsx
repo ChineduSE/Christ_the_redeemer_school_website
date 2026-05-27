@@ -51,7 +51,7 @@ export default function About() {
             <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/5] z-10">
               <Image
                 src="/images/director/director-portrait-formal.jpeg"
-                alt="Pastor Osagie Ize-Iyamu and Doctor Idia Ize-Iyamu — Directors, CTRS"
+                alt="Pst. Osagie and Proff. Idia Ize-Iyamu — Directors, CTRS"
                 fill
                 className="object-cover object-top"
                 sizes="(max-width: 1024px) 100vw, 50vw"
@@ -59,7 +59,7 @@ export default function About() {
               {/* Bottom gradient + name plate */}
               <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent pt-16 pb-5 px-5 text-center">
                 <p className="font-playfair font-bold text-white text-base leading-snug">
-                  Pst. Osagie &amp; Dr. Idia Ize-Iyamu
+                  Pst. Osagie &amp; Proff. Idia Ize-Iyamu
                 </p>
                 <p className="font-raleway text-[11px] text-ctrs-amber tracking-wider uppercase mt-1">
                   Directors, Christ The Redeemer&apos;s Schools
@@ -104,7 +104,7 @@ export default function About() {
                 prepared for the world ahead.
               </p>
               <p className="font-raleway font-semibold text-ctrs-green text-sm mt-3">
-                — Pst. Osagie &amp; Dr. Idia Ize-Iyamu, Directors, CTRS
+                — Pst. Osagie &amp; Proff. Idia Ize-Iyamu, Directors, CTRS
               </p>
             </div>
 
