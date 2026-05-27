@@ -26,9 +26,9 @@ const slides = [
     alt: 'Students smiling and reading in the school library',
   },
   {
-    src: '/images/campus/campus-exterior-building-full-frontage.jpeg',
+    src: '/images/campus/school-building.JPG',
     imgCls: 'object-cover object-center',
-    alt: 'Christ The Redeemer\'s Schools — campus exterior',
+    alt: 'Christ The Redeemer\'s Schools — school building',
   },
 ]
 
