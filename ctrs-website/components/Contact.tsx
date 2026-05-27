@@ -1,10 +1,16 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { MapPin, Phone, Mail, Clock, Send, CheckCircle } from 'lucide-react'
 
-const contactInfo = [
+const contactInfo: {
+  Icon: React.ElementType
+  label: string
+  lines: string[]
+  href: string | null
+  hrefs?: string[]
+}[] = [
   {
     Icon: MapPin,
     label: 'Address',
@@ -14,8 +20,9 @@ const contactInfo = [
   {
     Icon: Phone,
     label: 'Phone',
-    lines: ['07079401167', '09010360811'],
-    href: 'tel:07079401167',
+    lines: ['07068986395', '07087648020', '08038290892'],
+    href: 'tel:07068986395',
+    hrefs: ['tel:07068986395', 'tel:07087648020', 'tel:08038290892'],
   },
   {
     Icon: Mail,
@@ -26,7 +33,7 @@ const contactInfo = [
   {
     Icon: Clock,
     label: 'Office Hours',
-    lines: ['Mon – Fri: 7:30am – 4:00pm', 'Saturday: 8:00am – 12:00pm'],
+    lines: ['Mon – Fri: 7:30am – 4:00pm'],
     href: null,
   },
 ]
@@ -88,7 +95,7 @@ export default function Contact() {
             <h3 className="font-playfair text-2xl font-bold text-ctrs-dark">School Information</h3>
 
             <div className="space-y-5">
-              {contactInfo.map(({ Icon, label, lines, href }) => (
+              {contactInfo.map(({ Icon, label, lines, href, hrefs }) => (
                 <div key={label} className="flex gap-4">
                   <div className="w-10 h-10 bg-ctrs-cream rounded-lg flex items-center justify-center flex-shrink-0 border border-ctrs-green/15 shadow-sm">
                     <Icon size={17} className="text-ctrs-green" />
@@ -97,12 +104,13 @@ export default function Contact() {
                     <p className="font-raleway font-semibold text-xs uppercase tracking-wider text-ctrs-dark/50 mb-1">
                       {label}
                     </p>
-                    {lines.map((line, j) =>
-                      href && j === 0 ? (
+                    {lines.map((line, j) => {
+                      const lineHref = hrefs ? hrefs[j] : (href && j === 0 ? href : null)
+                      return lineHref ? (
                         <a
                           key={j}
-                          href={href}
-                          target={href.startsWith('http') ? '_blank' : undefined}
+                          href={lineHref}
+                          target={lineHref.startsWith('http') ? '_blank' : undefined}
                           rel="noopener noreferrer"
                           className="font-opensans text-sm text-ctrs-dark/70 hover:text-ctrs-green transition-colors block"
                         >
@@ -113,7 +121,7 @@ export default function Contact() {
                           {line}
                         </p>
                       )
-                    )}
+                    })}
                   </div>
                 </div>
               ))}

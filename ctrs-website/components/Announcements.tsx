@@ -1,43 +1,14 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { ArrowRight, Calendar } from 'lucide-react'
+import { ArrowRight, Calendar, FileText } from 'lucide-react'
+import { supabase } from '@/lib/supabase'
+import type { Announcement, AnnouncementCategory } from '@/types'
 
-const posts = [
-  {
-    slug: 'new-academic-session-2025-2026',
-    category: 'Announcement',
-    date: 'May 15, 2026',
-    title: 'Admissions Now Open for the 2025/2026 Academic Session',
-    excerpt:
-      'Christ The Redeemer\'s Schools is pleased to announce that admissions are now open across all divisions — from Crèche to Secondary School. Limited spaces are available. Early applications are encouraged.',
-    image: '/images/campus/campus-exterior-front-name-flag.jpeg',
-    imgPos: 'object-cover object-center',
-  },
-  {
-    slug: 'students-excel-inter-school-science',
-    category: 'Achievement',
-    date: 'April 28, 2026',
-    title: 'CTRS Students Shine at the Edo State Inter-School Science Challenge',
-    excerpt:
-      'Our Secondary School science team represented Christ The Redeemer\'s Schools with distinction, clinching first place in the Biology category and second overall at this year\'s Edo State Inter-School Science Challenge.',
-    image: '/images/science-lab/science-lab-interior-marble-benches-wide.jpeg',
-    imgPos: 'object-cover object-center',
-  },
-  {
-    slug: 'annual-speech-prize-giving-day-2026',
-    category: 'Event',
-    date: 'April 10, 2026',
-    title: 'Annual Speech & Prize Giving Day — Date Announced',
-    excerpt:
-      'We are excited to announce the date for this year\'s Annual Speech and Prize Giving Day. Parents, guardians, and well-wishers are warmly invited to celebrate our students\' outstanding academic and character achievements.',
-    image: '/images/students/secondary/secondary-large-group-photo-blazers.jpeg',
-    imgPos: 'object-cover object-[center_30%]',
-  },
-]
-
-const categoryColors: Record<string, string> = {
+const categoryColors: Record<AnnouncementCategory, string> = {
   Announcement: 'bg-ctrs-green text-white',
   Achievement: 'bg-ctrs-amber text-white',
   Event: 'bg-ctrs-emerald text-white',
@@ -53,9 +24,26 @@ const fadeUp = {
 }
 
 export default function Announcements() {
+  const [posts, setPosts] = useState<Announcement[]>([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    supabase
+      .from('announcements')
+      .select('*')
+      .eq('is_published', true)
+      .order('display_order', { ascending: true })
+      .limit(3)
+      .then(({ data }) => {
+        if (data) setPosts(data as Announcement[])
+        setLoading(false)
+      })
+  }, [])
+
+  if (loading || posts.length === 0) return null
+
   return (
     <section className="bg-white py-16 sm:py-20">
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Section header */}
@@ -71,7 +59,7 @@ export default function Announcements() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
           {posts.map((post, i) => (
             <motion.article
-              key={post.slug}
+              key={post.id}
               custom={i}
               initial="hidden"
               whileInView="visible"
@@ -81,17 +69,21 @@ export default function Announcements() {
             >
               {/* Image */}
               <div className="relative h-52 w-full overflow-hidden flex-shrink-0">
-                <Image
-                  src={post.image}
-                  alt={post.title}
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  className={`${post.imgPos} transition-transform duration-500 group-hover:scale-105`}
-                />
+                {post.image_url ? (
+                  <Image
+                    src={post.image_url}
+                    alt={post.title}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                ) : (
+                  <div className="w-full h-full bg-gradient-to-br from-ctrs-green/10 to-ctrs-amber/10 flex items-center justify-center">
+                    <FileText size={32} className="text-ctrs-green/20" />
+                  </div>
+                )}
                 {/* Category badge */}
-                <span
-                  className={`absolute top-3 left-3 z-10 font-raleway font-bold text-[10px] tracking-widest uppercase px-2.5 py-1 rounded-full ${categoryColors[post.category]}`}
-                >
+                <span className={`absolute top-3 left-3 z-10 font-raleway font-bold text-[10px] tracking-widest uppercase px-2.5 py-1 rounded-full ${categoryColors[post.category]}`}>
                   {post.category}
                 </span>
               </div>
@@ -102,7 +94,7 @@ export default function Announcements() {
                 <div className="flex items-center gap-1.5 mb-3">
                   <Calendar size={12} className="text-ctrs-amber flex-shrink-0" />
                   <span className="font-raleway text-[11px] text-ctrs-dark/45 tracking-wide">
-                    {post.date}
+                    {new Date(post.created_at).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
                   </span>
                 </div>
 
@@ -112,18 +104,18 @@ export default function Announcements() {
                 </h3>
 
                 {/* Excerpt */}
-                <p className="font-opensans text-sm text-ctrs-dark/60 leading-relaxed flex-1 mb-5">
-                  {post.excerpt}
+                <p className="font-opensans text-sm text-ctrs-dark/60 leading-relaxed flex-1 mb-5 line-clamp-3">
+                  {post.excerpt || post.body.slice(0, 150)}
                 </p>
 
                 {/* Read More */}
-                <a
+                <Link
                   href={`/news/${post.slug}`}
                   className="inline-flex items-center gap-1.5 font-raleway font-bold text-sm text-ctrs-green hover:text-ctrs-amber transition-colors duration-200 self-start"
                 >
                   Read More
                   <ArrowRight size={14} className="transition-transform duration-200 group-hover:translate-x-1" />
-                </a>
+                </Link>
               </div>
             </motion.article>
           ))}
@@ -131,13 +123,13 @@ export default function Announcements() {
 
         {/* View all */}
         <div className="mt-12 text-center">
-          <a
+          <Link
             href="/news"
             className="inline-flex items-center gap-2 font-raleway font-semibold text-sm px-8 py-3 border-2 border-ctrs-green text-ctrs-green rounded-lg hover:bg-ctrs-green hover:text-white transition-all duration-300"
           >
             View All News &amp; Announcements
             <ArrowRight size={15} />
-          </a>
+          </Link>
         </div>
       </div>
 

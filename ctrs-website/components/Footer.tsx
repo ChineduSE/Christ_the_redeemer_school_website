@@ -50,8 +50,9 @@ export default function Footer() {
             <p className="font-opensans text-white/40 text-xs mb-4">
               Benin City, Edo State, Nigeria
             </p>
-            <p className="font-opensans text-white/40 text-xs">07079401167</p>
-            <p className="font-opensans text-white/40 text-xs mb-6">09010360811</p>
+            <a href="tel:07068986395" className="font-opensans text-white/40 text-xs hover:text-ctrs-amber transition-colors block">07068986395</a>
+            <a href="tel:07087648020" className="font-opensans text-white/40 text-xs hover:text-ctrs-amber transition-colors block">07087648020</a>
+            <a href="tel:08038290892" className="font-opensans text-white/40 text-xs hover:text-ctrs-amber transition-colors block mb-6">08038290892</a>
 
             {/* Social icons */}
             <div className="flex gap-2.5">

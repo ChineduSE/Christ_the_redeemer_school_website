@@ -52,6 +52,36 @@ body {
   color: var(--ctrs-amber);
 }
 
+/* Admin form helpers */
+.label-sm {
+  display: block;
+  font-family: var(--font-raleway), Raleway, sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(44, 44, 44, 0.5);
+  margin-bottom: 0.4rem;
+}
+
+.field {
+  width: 100%;
+  padding: 0.65rem 0.9rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  font-family: var(--font-opensans), Open Sans, sans-serif;
+  font-size: 0.875rem;
+  color: var(--ctrs-dark);
+  background: #fff;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  outline: none;
+}
+.field:focus {
+  border-color: var(--ctrs-green);
+  box-shadow: 0 0 0 3px rgba(27, 94, 59, 0.08);
+}
+.field::placeholder { color: rgba(44, 44, 44, 0.25); }
+
 /* Line clamp */
 .line-clamp-2 {
   display: -webkit-box;

@@ -1,6 +1,7 @@
 import Navbar from '@/components/Navbar'
 import Hero from '@/components/Hero'
 import Announcements from '@/components/Announcements'
+import PopupAnnouncement from '@/components/PopupAnnouncement'
 import Stats from '@/components/Stats'
 import About from '@/components/About'
 import Academics from '@/components/Academics'
@@ -14,6 +15,7 @@ import Footer from '@/components/Footer'
 export default function HomePage() {
   return (
     <main>
+      <PopupAnnouncement />
       <Navbar />
       <Hero />
       <Announcements />

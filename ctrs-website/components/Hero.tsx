@@ -74,9 +74,9 @@ export default function Hero() {
         </motion.div>
       </AnimatePresence>
 
-      {/* Layered overlays — much lighter so the image breathes */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/58 via-black/22 to-transparent z-10" />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/48 via-transparent to-black/18 z-10" />
+      {/* Layered overlays — image breathes but text stays legible */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/35 to-transparent z-10" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-black/25 z-10" />
 
       {/* Left accent bar */}
       <div className="absolute left-0 inset-y-0 w-[3px] bg-gradient-to-b from-transparent via-ctrs-amber to-transparent z-30 opacity-60" />
@@ -135,7 +135,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.75, delay: 0.65 }}
-              className="font-opensans text-[13px] sm:text-[14.5px] lg:text-[15.5px] text-white/72 leading-[1.7] mb-7 sm:mb-9 max-w-[260px] sm:max-w-xs lg:max-w-sm"
+              className="font-opensans text-[13px] sm:text-[14.5px] lg:text-[15.5px] text-white leading-[1.7] mb-7 sm:mb-9 max-w-[260px] sm:max-w-xs lg:max-w-sm"
             >
               Raising young people of character — spiritually rooted, academically excellent, and ready for the world ahead.
             </motion.p>

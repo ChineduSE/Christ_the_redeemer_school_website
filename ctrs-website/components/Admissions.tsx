@@ -178,7 +178,7 @@ export default function Admissions() {
                 Start Your Application
               </a>
               <a
-                href="tel:07079401167"
+                href="tel:07068986395"
                 className="flex-1 font-raleway font-bold text-sm text-center py-4 border-2 border-white/25 text-white rounded-xl hover:bg-white/10 transition-all duration-300 flex items-center justify-center gap-2"
               >
                 <Phone size={15} /> Call Us Now

@@ -1,51 +1,50 @@
 'use client'
 
-import { useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { motion, useInView } from 'framer-motion'
-import { Calendar, ArrowRight } from 'lucide-react'
+import { Calendar, ArrowRight, FileText } from 'lucide-react'
+import { supabase } from '@/lib/supabase'
+import type { Announcement, AnnouncementCategory, CalendarEvent, CalendarEventType } from '@/types'
 
-const articles = [
-  {
-    title: 'CTRS Students Excel at Edo State Mathematics Olympiad',
-    excerpt:
-      'Our Secondary School team brought home top honours, with two students placing in the top five overall — a remarkable achievement reflecting months of dedicated preparation.',
-    date: 'May 12, 2026',
-    category: 'Academic Achievement',
-    image: '/images/students/secondary/secondary-class-teacher-writing-board.jpeg',
-    featured: true,
-  },
-  {
-    title: 'Computer Lab Expansion: 30 New Workstations Installed',
-    excerpt:
-      'CTRS has completed a major ICT upgrade, adding 30 new HP workstations and a second smartboard to serve our growing student body.',
-    date: 'April 28, 2026',
-    category: 'Facilities',
-    image: '/images/computer-lab/computer-lab-new-computers-plastic-wrap.jpeg',
-    featured: false,
-  },
-  {
-    title: 'Annual Prize Giving Day — Celebrating Excellence Across All Divisions',
-    excerpt:
-      'This year\'s Prize Giving Day was a spectacular celebration of achievement, character, and co-curricular excellence from Crèche to Secondary.',
-    date: 'March 15, 2026',
-    category: 'Events',
-    image: '/images/students/secondary/secondary-group-photo-blazers-1.jpeg',
-    featured: false,
-  },
-]
-
-const events = [
-  { date: 'May 26', month: 'May', day: '26', title: 'Mid-Term Break Begins', type: 'Calendar' },
-  { date: 'Jun 2', month: 'Jun', day: '2', title: 'Resumption — Third Term Continues', type: 'Calendar' },
-  { date: 'Jun 14', month: 'Jun', day: '14', title: 'Sports Day — All Divisions', type: 'Event' },
-  { date: 'Jul 11', month: 'Jul', day: '11', title: 'Third Term Examinations Begin', type: 'Calendar' },
-  { date: 'Jul 25', month: 'Jul', day: '25', title: 'Prize Giving & Closing Ceremony', type: 'Special' },
-]
+const CAT_COLORS: Record<AnnouncementCategory, string> = {
+  Announcement: 'bg-ctrs-green text-white',
+  Achievement: 'bg-ctrs-amber text-white',
+  Event: 'bg-ctrs-emerald text-white',
+}
+const EV_COLORS: Record<CalendarEventType, string> = {
+  Calendar: 'text-blue-500',
+  Event: 'text-ctrs-amber',
+  Special: 'text-purple-500',
+}
 
 export default function News() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
+
+  const [articles, setArticles] = useState<Announcement[]>([])
+  const [events, setEvents] = useState<CalendarEvent[]>([])
+
+  useEffect(() => {
+    const today = new Date().toISOString().split('T')[0]
+
+    supabase
+      .from('announcements')
+      .select('*')
+      .eq('is_published', true)
+      .order('display_order', { ascending: true })
+      .limit(4)
+      .then(({ data }) => { if (data) setArticles(data as Announcement[]) })
+
+    supabase
+      .from('calendar_events')
+      .select('*')
+      .gte('event_date', today)
+      .order('event_date', { ascending: true })
+      .limit(5)
+      .then(({ data }) => { if (data) setEvents(data as CalendarEvent[]) })
+  }, [])
 
   return (
     <section id="news" ref={ref} className="bg-ctrs-cream py-24 sm:py-32">
@@ -70,22 +69,28 @@ export default function News() {
           <div className="lg:col-span-2 grid sm:grid-cols-2 gap-5 content-start">
             {articles.map((article, i) => (
               <motion.article
-                key={i}
+                key={article.id}
                 initial={{ opacity: 0, y: 22 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
-                className={`group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-400 hover:-translate-y-1 ${article.featured ? 'sm:col-span-2' : ''}`}
+                className={`group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-400 hover:-translate-y-1 ${i === 0 ? 'sm:col-span-2' : ''}`}
               >
-                <div className="relative overflow-hidden" style={{ height: article.featured ? '220px' : '180px' }}>
-                  <Image
-                    src={article.image}
-                    alt={article.title}
-                    fill
-                    sizes="(max-width: 640px) 100vw, 50vw"
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
+                <div className="relative overflow-hidden" style={{ height: i === 0 ? '220px' : '180px' }}>
+                  {article.image_url ? (
+                    <Image
+                      src={article.image_url}
+                      alt={article.title}
+                      fill
+                      sizes="(max-width: 640px) 100vw, 50vw"
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-gradient-to-br from-ctrs-green/10 to-ctrs-amber/10 flex items-center justify-center">
+                      <FileText size={30} className="text-ctrs-green/20" />
+                    </div>
+                  )}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-                  <span className="absolute top-4 left-4 font-raleway font-semibold text-[11px] text-white bg-ctrs-green px-3 py-1.5 rounded-full">
+                  <span className={`absolute top-4 left-4 font-raleway font-semibold text-[11px] text-white px-3 py-1.5 rounded-full ${CAT_COLORS[article.category]}`}>
                     {article.category}
                   </span>
                 </div>
@@ -93,24 +98,33 @@ export default function News() {
                 <div className="p-5">
                   <div className="flex items-center gap-2 text-ctrs-dark/40 mb-2.5">
                     <Calendar size={11} />
-                    <span className="font-raleway text-[11px]">{article.date}</span>
+                    <span className="font-raleway text-[11px]">
+                      {new Date(article.created_at).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
+                    </span>
                   </div>
                   <h3 className="font-playfair font-bold text-ctrs-dark text-[17px] leading-snug mb-2 group-hover:text-ctrs-green transition-colors">
                     {article.title}
                   </h3>
                   <p className="font-opensans text-sm text-ctrs-dark/55 leading-relaxed mb-4 line-clamp-2">
-                    {article.excerpt}
+                    {article.excerpt || article.body.slice(0, 130)}
                   </p>
-                  <a
-                    href="#"
+                  <Link
+                    href={`/news/${article.slug}`}
                     className="inline-flex items-center gap-2 font-raleway font-semibold text-[13px] text-ctrs-green hover:text-ctrs-amber transition-colors group/link"
                   >
                     Read More{' '}
                     <ArrowRight size={13} className="transition-transform group-hover/link:translate-x-1" />
-                  </a>
+                  </Link>
                 </div>
               </motion.article>
             ))}
+
+            {articles.length === 0 && (
+              <div className="sm:col-span-2 bg-white rounded-2xl p-12 flex flex-col items-center justify-center text-center shadow-sm">
+                <FileText size={28} className="text-ctrs-dark/15 mb-3" />
+                <p className="font-opensans text-ctrs-dark/35 text-sm">No news published yet.</p>
+              </div>
+            )}
           </div>
 
           {/* Events sidebar */}
@@ -125,35 +139,38 @@ export default function News() {
                 <h3 className="font-playfair text-xl font-bold text-ctrs-dark">Upcoming Events</h3>
               </div>
 
-              <div className="space-y-4">
-                {events.map((ev, i) => (
-                  <div
-                    key={i}
-                    className="flex gap-4 items-start group/ev cursor-pointer"
-                  >
-                    {/* Date tile */}
-                    <div className="flex-shrink-0 w-12 h-12 bg-ctrs-cream rounded-xl flex flex-col items-center justify-center border border-ctrs-green/15 group-hover/ev:bg-ctrs-green group-hover/ev:border-ctrs-green transition-all duration-300">
-                      <span className="font-playfair font-bold text-sm text-ctrs-green group-hover/ev:text-white transition-colors leading-none">
-                        {ev.day}
-                      </span>
-                      <span className="font-raleway text-[9px] text-ctrs-dark/40 group-hover/ev:text-white/70 transition-colors uppercase tracking-wide">
-                        {ev.month}
-                      </span>
-                    </div>
-                    <div>
-                      <p className="font-raleway font-semibold text-sm text-ctrs-dark group-hover/ev:text-ctrs-green transition-colors leading-snug">
-                        {ev.title}
-                      </p>
-                      <p className="font-opensans text-[11px] text-ctrs-dark/40 mt-0.5">{ev.type}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
+              {events.length === 0 ? (
+                <p className="font-opensans text-sm text-ctrs-dark/35 text-center py-4">No upcoming events.</p>
+              ) : (
+                <div className="space-y-4">
+                  {events.map((ev) => {
+                    const d = new Date(ev.event_date + 'T00:00:00')
+                    return (
+                      <div key={ev.id} className="flex gap-4 items-start group/ev">
+                        <div className="flex-shrink-0 w-12 h-12 bg-ctrs-cream rounded-xl flex flex-col items-center justify-center border border-ctrs-green/15 group-hover/ev:bg-ctrs-green group-hover/ev:border-ctrs-green transition-all duration-300">
+                          <span className="font-playfair font-bold text-sm text-ctrs-green group-hover/ev:text-white transition-colors leading-none">
+                            {d.getDate()}
+                          </span>
+                          <span className="font-raleway text-[9px] text-ctrs-dark/40 group-hover/ev:text-white/70 transition-colors uppercase tracking-wide">
+                            {d.toLocaleDateString('en-GB', { month: 'short' })}
+                          </span>
+                        </div>
+                        <div>
+                          <p className="font-raleway font-semibold text-sm text-ctrs-dark group-hover/ev:text-ctrs-green transition-colors leading-snug">
+                            {ev.title}
+                          </p>
+                          <p className={`font-opensans text-[11px] mt-0.5 ${EV_COLORS[ev.event_type]}`}>{ev.event_type}</p>
+                        </div>
+                      </div>
+                    )
+                  })}
+                </div>
+              )}
 
               <div className="mt-7 pt-5 border-t border-gray-100 text-center">
-                <a href="#" className="font-raleway font-semibold text-sm text-ctrs-green hover:text-ctrs-amber transition-colors">
+                <Link href="/calendar" className="font-raleway font-semibold text-sm text-ctrs-green hover:text-ctrs-amber transition-colors">
                   View Full Calendar →
-                </a>
+                </Link>
               </div>
             </div>
           </motion.div>
