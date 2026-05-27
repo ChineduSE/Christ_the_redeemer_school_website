@@ -67,8 +67,8 @@ export default function Announcements() {
               variants={fadeUp}
               className="group flex flex-col bg-white rounded-2xl overflow-hidden border border-ctrs-green/10 shadow-sm hover:shadow-md transition-shadow duration-300"
             >
-              {/* Image */}
-              <div className="relative h-52 w-full overflow-hidden flex-shrink-0">
+              {/* Image — fixed height for consistent grid layout */}
+              <div className="relative h-52 w-full flex-shrink-0 overflow-hidden">
                 {post.image_url ? (
                   <Image
                     src={post.image_url}

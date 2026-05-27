@@ -75,6 +75,7 @@ export default function News() {
                 transition={{ duration: 0.6, delay: i * 0.1 }}
                 className={`group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-400 hover:-translate-y-1 ${i === 0 ? 'sm:col-span-2' : ''}`}
               >
+                {/* Image — fixed height for consistent grid layout */}
                 <div className="relative overflow-hidden" style={{ height: i === 0 ? '220px' : '180px' }}>
                   {article.image_url ? (
                     <Image

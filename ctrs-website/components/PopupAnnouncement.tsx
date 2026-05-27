@@ -61,9 +61,17 @@ export default function PopupAnnouncement() {
             <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden pointer-events-auto">
               {/* Image or colour banner */}
               {post.image_url ? (
-                <div className="relative h-52 w-full overflow-hidden">
-                  <Image src={post.image_url} alt={post.title} fill className="object-cover" sizes="500px" priority />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                <div className="relative w-full overflow-hidden">
+                  <Image
+                    src={post.image_url}
+                    alt={post.title}
+                    width={0}
+                    height={0}
+                    sizes="500px"
+                    style={{ width: '100%', height: 'auto', display: 'block' }}
+                    priority
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent pointer-events-none" />
                   <span className={`absolute top-4 left-4 font-raleway font-bold text-[10px] tracking-widest uppercase px-2.5 py-1 rounded-full ${CAT_COLORS[post.category]}`}>
                     {post.category}
                   </span>

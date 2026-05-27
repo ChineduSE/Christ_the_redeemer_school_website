@@ -72,8 +72,16 @@ export default async function ArticlePage({ params }: { params: { slug: string }
           <div className="max-w-3xl mx-auto">
             {/* Cover image */}
             {post.image_url && (
-              <div className="relative w-full rounded-2xl overflow-hidden mb-10 shadow-md" style={{ aspectRatio: '16/7' }}>
-                <Image src={post.image_url} alt={post.title} fill className="object-cover" sizes="(max-width: 768px) 100vw, 800px" priority />
+              <div className="w-full rounded-2xl overflow-hidden mb-10 shadow-md">
+                <Image
+                  src={post.image_url}
+                  alt={post.title}
+                  width={0}
+                  height={0}
+                  sizes="(max-width: 768px) 100vw, 800px"
+                  style={{ width: '100%', height: 'auto', display: 'block' }}
+                  priority
+                />
               </div>
             )}
 
