@@ -36,9 +36,9 @@ export default async function NewsPage() {
       <Navbar />
       <main>
         {/* Hero banner */}
-        <div className="bg-ctrs-green pt-28 pb-16 px-4">
+        <div className="bg-ctrs-green pt-10 pb-16 px-4">
           <div className="max-w-4xl mx-auto">
-            <Link href="/" className="inline-flex items-center gap-1.5 font-raleway text-white/50 hover:text-white text-sm mb-8 transition-colors">
+            <Link href="/" className="flex w-fit items-center gap-1.5 font-raleway text-white/50 hover:text-white text-sm mb-8 transition-colors">
               <ArrowLeft size={14} /> Back to Home
             </Link>
             <span className="section-label text-ctrs-amber">News &amp; Announcements</span>

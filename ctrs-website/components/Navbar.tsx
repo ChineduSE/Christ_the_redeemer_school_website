@@ -2,18 +2,19 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 
 const navLinks = [
-  { href: '#home', label: 'Home' },
-  { href: '#about', label: 'About' },
-  { href: '#academics', label: 'Academics' },
-  { href: '#facilities', label: 'Facilities' },
-  { href: '#admissions', label: 'Admissions' },
-  { href: '#gallery', label: 'Gallery' },
-  { href: '#news', label: 'News' },
-  { href: '#contact', label: 'Contact' },
+  { href: '/#home', label: 'Home' },
+  { href: '/#about', label: 'About' },
+  { href: '/#academics', label: 'Academics' },
+  { href: '/#facilities', label: 'Facilities' },
+  { href: '/#admissions', label: 'Admissions' },
+  { href: '/#gallery', label: 'Gallery' },
+  { href: '/#news', label: 'News' },
+  { href: '/#contact', label: 'Contact' },
 ]
 
 export default function Navbar() {
@@ -25,7 +26,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16 sm:h-[70px] gap-6">
 
           {/* Logo */}
-          <a href="#home" className="flex items-center gap-3 flex-shrink-0">
+          <Link href="/" className="flex items-center gap-3 flex-shrink-0">
             <div className="relative w-10 h-10 sm:w-11 sm:h-11">
               <Image
                 src="/images/logo_ctrs.png"
@@ -42,18 +43,18 @@ export default function Navbar() {
                 Schools
               </p>
             </div>
-          </a>
+          </Link>
 
           {/* Desktop nav links */}
           <div className="hidden lg:flex items-center gap-0.5">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.href}
                 href={link.href}
                 className="font-raleway font-medium text-[13px] px-3 py-2 rounded-md text-ctrs-green/75 hover:text-ctrs-green hover:bg-ctrs-green/8 transition-all duration-200"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
           </div>
 
@@ -65,12 +66,12 @@ export default function Navbar() {
             >
               School Portal
             </a>
-            <a
-              href="#admissions"
+            <Link
+              href="/#admissions"
               className="font-raleway font-bold text-[13px] px-5 py-2 rounded-md bg-ctrs-amber text-white hover:bg-ctrs-amber/90 transition-all duration-300 shadow-md hover:shadow-lg"
             >
               Apply Now
-            </a>
+            </Link>
           </div>
 
           {/* Mobile toggle */}
@@ -96,14 +97,14 @@ export default function Navbar() {
           >
             <div className="px-4 py-4 space-y-0.5">
               {navLinks.map((link) => (
-                <a
+                <Link
                   key={link.href}
                   href={link.href}
                   onClick={() => setMenuOpen(false)}
                   className="block font-raleway font-medium text-white/80 hover:text-white py-2.5 px-3 rounded-lg hover:bg-white/10 transition-colors text-sm"
                 >
                   {link.label}
-                </a>
+                </Link>
               ))}
               <div className="pt-4 pb-1 flex flex-col gap-2.5">
                 <a
@@ -112,13 +113,13 @@ export default function Navbar() {
                 >
                   School Portal
                 </a>
-                <a
-                  href="#admissions"
+                <Link
+                  href="/#admissions"
                   onClick={() => setMenuOpen(false)}
                   className="font-raleway font-bold text-sm text-center py-2.5 bg-ctrs-amber text-white rounded-lg hover:bg-ctrs-amber/90 transition-all shadow-md"
                 >
                   Apply Now
-                </a>
+                </Link>
               </div>
             </div>
           </motion.div>

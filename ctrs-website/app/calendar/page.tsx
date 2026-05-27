@@ -41,9 +41,9 @@ export default async function CalendarPage() {
     <>
       <Navbar />
       <main>
-        <div className="bg-ctrs-green pt-28 pb-14 px-4">
+        <div className="bg-ctrs-green pt-10 pb-14 px-4">
           <div className="max-w-3xl mx-auto">
-            <Link href="/#news" className="inline-flex items-center gap-1.5 font-raleway text-white/50 hover:text-white text-sm mb-8 transition-colors">
+            <Link href="/#news" className="flex w-fit items-center gap-1.5 font-raleway text-white/50 hover:text-white text-sm mb-8 transition-colors">
               <ArrowLeft size={14} /> Back
             </Link>
             <span className="section-label text-ctrs-amber">Academic Calendar</span>
