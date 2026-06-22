@@ -3,7 +3,7 @@
 import { useRef } from 'react'
 import Image from 'next/image'
 import { motion, useInView } from 'framer-motion'
-import { BookOpen, FlaskConical, Monitor, Utensils, TreePine, Bus } from 'lucide-react'
+import { BookOpen, FlaskConical, Monitor, Utensils, Palette, TreePine, Bus } from 'lucide-react'
 
 const facilities = [
   {
@@ -33,6 +33,13 @@ const facilities = [
       'A fully functional kitchen lab for practical Home Economics education, complete with gas cookers, utensils, and purpose-built workspaces.',
     image: '/images/home-economics/home-economics-lab-kitchen-utensils-counter.jpeg',
     Icon: Utensils,
+  },
+  {
+    title: 'Music & Art',
+    description:
+      'A vibrant creative studio for music and visual arts — with keyboards, percussion, easels, and craft materials where students compose, paint, and perform with confidence.',
+    image: '/images/Music-Art/DSC_9340.JPG',
+    Icon: Palette,
   },
   {
     title: 'Playground',
@@ -71,7 +78,7 @@ export default function Facilities() {
             Equipped for Excellence
           </h2>
           <p className="font-opensans text-ctrs-dark/55 max-w-2xl mx-auto text-lg leading-relaxed">
-            Six specialised learning environments — designed to complement classroom education and
+            Seven specialised learning environments — designed to complement classroom education and
             ignite a love for discovery in every child.
           </p>
         </motion.div>
