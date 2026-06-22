@@ -6,7 +6,16 @@
       "Bash(Out-Null)",
       "Bash(New-Item -ItemType Directory -Force \"C:\\\\Users\\\\Chinedu Nweke\\\\Downloads\\\\CtrsWebsiteProject\\\\ctrs-website\\\\components\")",
       "Bash(New-Item -ItemType Directory -Force \"C:\\\\Users\\\\Chinedu Nweke\\\\Downloads\\\\CtrsWebsiteProject\\\\ctrs-website\\\\public\\\\images\")",
-      "Bash(Write-Host \"Directories created\")"
+      "Bash(Write-Host \"Directories created\")",
+      "Bash(cp public/images/logo_ctrs.png app/icon.png)",
+      "Bash(cp public/images/logo_ctrs.png app/apple-icon.png)",
+      "Read(//c/c/Users/Chinedu Nweke/Downloads/CtrsWebsiteProject/ctrs-website/app/**)",
+      "Bash(node -e ' *)",
+      "Bash(command -v magick convert mogrify)",
+      "Bash(python -c ' *)",
+      "Bash(file app/icon.png app/apple-icon.png public/og-image.jpg)",
+      "Bash(python -c \"from PIL import Image; [print\\(p, Image.open\\(p\\).size\\) for p in ['app/icon.png','app/apple-icon.png','public/og-image.jpg']]\")",
+      "Bash(npm run *)"
     ]
   }
 }

@@ -1,5 +1,20 @@
 import Image from 'next/image'
-import { Facebook, Instagram, Twitter, Youtube } from 'lucide-react'
+import { Facebook, Instagram, Youtube } from 'lucide-react'
+
+// lucide-react ships only the deprecated Twitter bird, so use the current X logo glyph.
+function XIcon({ size = 13 }: { size?: number }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden="true"
+    >
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+    </svg>
+  )
+}
 
 const links: Record<string, string[]> = {
   School: ['About Us', 'Vision & Mission', "Director's Message", 'CRSM Overview'],
@@ -9,10 +24,10 @@ const links: Record<string, string[]> = {
 }
 
 const social = [
-  { Icon: Facebook, label: 'Facebook' },
-  { Icon: Instagram, label: 'Instagram' },
-  { Icon: Twitter, label: 'Twitter / X' },
-  { Icon: Youtube, label: 'YouTube' },
+  { Icon: Facebook, label: 'Facebook', href: '#' },
+  { Icon: Instagram, label: 'Instagram', href: '#' },
+  { Icon: XIcon, label: 'X (@ctrsedo16)', href: 'https://x.com/ctrsedo16' },
+  { Icon: Youtube, label: 'YouTube (@ctrsedo16)', href: 'https://www.youtube.com/@ctrsedo16' },
 ]
 
 export default function Footer() {
@@ -56,16 +71,20 @@ export default function Footer() {
 
             {/* Social icons */}
             <div className="flex gap-2.5">
-              {social.map(({ Icon, label }) => (
-                <a
-                  key={label}
-                  href="#"
-                  aria-label={label}
-                  className="w-9 h-9 rounded-full bg-white/10 border border-white/10 flex items-center justify-center hover:bg-ctrs-amber hover:border-ctrs-amber hover:scale-110 transition-all duration-300"
-                >
-                  <Icon size={13} />
-                </a>
-              ))}
+              {social.map(({ Icon, label, href }) => {
+                const external = href.startsWith('http')
+                return (
+                  <a
+                    key={label}
+                    href={href}
+                    aria-label={label}
+                    {...(external && { target: '_blank', rel: 'noopener noreferrer' })}
+                    className="w-9 h-9 rounded-full bg-white/10 border border-white/10 flex items-center justify-center hover:bg-ctrs-amber hover:border-ctrs-amber hover:scale-110 transition-all duration-300"
+                  >
+                    <Icon size={13} />
+                  </a>
+                )
+              })}
             </div>
           </div>
 
