@@ -16,6 +16,13 @@ function XIcon({ size = 13 }: { size?: number }) {
   )
 }
 
+const SCHOOL_PORTAL_URL = 'https://christtheredeemer.schoolsfocus.net/signin'
+
+// Link items default to '#'; entries listed here point at a real destination.
+const linkHrefs: Record<string, string> = {
+  'School Portal': SCHOOL_PORTAL_URL,
+}
+
 const links: Record<string, string[]> = {
   School: ['About Us', 'Vision & Mission', "Director's Message", 'CRSM Overview'],
   Academics: ['Crèche & Pre-School', 'Nursery & Kindergarten', 'Primary School', 'Secondary School'],
@@ -95,16 +102,21 @@ export default function Footer() {
                 {heading}
               </h4>
               <ul className="space-y-2.5">
-                {items.map((item) => (
-                  <li key={item}>
-                    <a
-                      href="#"
-                      className="font-opensans text-[13px] text-white/45 hover:text-white transition-colors duration-200"
-                    >
-                      {item}
-                    </a>
-                  </li>
-                ))}
+                {items.map((item) => {
+                  const href = linkHrefs[item] ?? '#'
+                  const external = href.startsWith('http')
+                  return (
+                    <li key={item}>
+                      <a
+                        href={href}
+                        {...(external && { target: '_blank', rel: 'noopener noreferrer' })}
+                        className="font-opensans text-[13px] text-white/45 hover:text-white transition-colors duration-200"
+                      >
+                        {item}
+                      </a>
+                    </li>
+                  )
+                })}
               </ul>
             </div>
           ))}

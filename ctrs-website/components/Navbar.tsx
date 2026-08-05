@@ -6,6 +6,8 @@ import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 
+const SCHOOL_PORTAL_URL = 'https://christtheredeemer.schoolsfocus.net/signin'
+
 const navLinks = [
   { href: '/#home', label: 'Home' },
   { href: '/#about', label: 'About' },
@@ -61,7 +63,9 @@ export default function Navbar() {
           {/* CTA buttons */}
           <div className="hidden lg:flex items-center gap-3 flex-shrink-0">
             <a
-              href="#"
+              href={SCHOOL_PORTAL_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="font-raleway font-semibold text-[13px] px-4 py-2 rounded-md border-2 border-ctrs-green/40 text-ctrs-green hover:bg-ctrs-green hover:text-white transition-all duration-300"
             >
               School Portal
@@ -108,7 +112,10 @@ export default function Navbar() {
               ))}
               <div className="pt-4 pb-1 flex flex-col gap-2.5">
                 <a
-                  href="#"
+                  href={SCHOOL_PORTAL_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setMenuOpen(false)}
                   className="font-raleway font-semibold text-sm text-center py-2.5 border-2 border-white/30 text-white rounded-lg hover:bg-white hover:text-ctrs-green transition-all"
                 >
                   School Portal
